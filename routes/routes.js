@@ -3,9 +3,9 @@ const app = express.Router();
 const PostController = require('../Controllers/PostController');
 
 
-app.get('/posts',PostController.index)
-app.get('/posts/:id',PostController.show )
-app.post('/posts',PostController.store)
+app.get('/',PostController.index)
+app.get('/:id',PostController.show )
+app.post('/',PostController.store)
 
 
 module.exports = app;
