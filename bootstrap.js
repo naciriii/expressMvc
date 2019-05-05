@@ -3,22 +3,23 @@ const app = express();
 const BodyParser = require('body-parser');
 const router = require('./routes/routes');
 
-class App {
+class App 
+{
 
-load() {
-app.use(BodyParser.urlencoded({extended:true}));
-app.use(BodyParser.json());
-app.use(router);
+	constructor(port = 5000) {
+		this.port = process.env.PORT || port;
 
+	}
 
+	init() {
+		app.use(BodyParser.urlencoded({extended:true}));
+		app.use(BodyParser.json());
+		app.use(router);
 
-
-
-let port = process.env.PORT || 5000;
-app.listen(port,() => {
-    console.log("connecting"+port);
-    
-})
+		app.listen(this.port,() => {
+    	console.log("connecting"+this.port);
+		})
+		}
 }
-}
+
 module.exports = App;

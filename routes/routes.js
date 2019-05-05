@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express.Router();
-const PostController = require('../Controller/PostController');
+const PostController = require('../Controllers/PostController');
 
 
 app.get('/posts',PostController.index)
