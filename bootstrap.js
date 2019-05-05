@@ -6,7 +6,7 @@ const router = require('./routes/routes');
 class App {
 
 load() {
-    app.use(BodyParser.urlencoded({extended:true}));
+app.use(BodyParser.urlencoded({extended:true}));
 app.use(BodyParser.json());
 app.use(router);
 
@@ -21,4 +21,4 @@ app.listen(port,() => {
 })
 }
 }
-module.exports = new App();
+module.exports = App;

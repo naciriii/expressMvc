@@ -1,2 +1,3 @@
-const app = require('./bootstrap');
+const App= require('./bootstrap');
+const app = new App();
 app.load();

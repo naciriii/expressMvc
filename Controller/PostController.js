@@ -1,8 +1,11 @@
 const Post = require('../Models/Post');
+const PostRepository = require('../Repositories/PostRepository');
 const joi = require('joi');
 
-exports.index = (req, res) => {
-    Post.getPosts().then((result)=>{
+class PostController {
+
+index (req, res) {
+    PostRepository.getPosts().then((result)=>{
         console.log(result);
         res.send(result);
     }).catch(err=> {
@@ -12,15 +15,15 @@ exports.index = (req, res) => {
   
 
 }
-module.exports.show = (req, res) => {
+show (req, res)  {
    
-    Post.getPost(req.params.id).then(result =>{
+    PostRepository.getPost(req.params.id).then(result =>{
        res.send(result);
    },err=>{
        res.send(err.message)
    })
 }
-exports.store =  (req, res) => {
+store (req, res) {
     console.log(req.body);
     const schema = {
         name:joi.string().min(3).required(),
@@ -31,7 +34,7 @@ exports.store =  (req, res) => {
         res.send(error.details);
 
     }
-   Post.storePost(req.body).then(result => {
+   PostRepository.storePost(req.body).then(result => {
        console.log(result);
     res.send(result);
 
@@ -40,3 +43,5 @@ exports.store =  (req, res) => {
    })
     
 }
+}
+module.exports = new PostController();

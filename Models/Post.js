@@ -1,38 +1,16 @@
-const db = require('./Db');
 
 class Post {
+    
+    constructor(obj) {
+    obj && Object.assign(this, obj);
+  }
+
+  toString() {
+
+      return `Name is :${this.name}, Author is: ${this.author}, 'Content is: ${this
+          .content.substr(0,3)}`
+  }
   
-   getPosts()
-    {
-        return new Promise((resolve, reject) => {
-            db.query("select * from posts",(err, res) => {
-                if(err) reject(err);
-                resolve(res);
-            });
-        })
-       
-    
-    
+  
 }
-    getPost(id) {
-        return new Promise((resolve, reject) => {
-            db.query(`select * from posts where id = ${id}`,(err, res) => {
-                if(err) reject(err);
-                resolve(res);
-            });
-        })
-       
-    }
-
-    storePost(post) {
-        return new Promise((resolve, reject) => {
-            db.query(`insert into posts (name, author) values (?)`,[Object.values(post)], (err, res) => {
-                if(err) reject(err);
-                resolve(res);
-            });
-        })
-    }
-
-
-}
-module.exports = new Post();
+module.exports = Post;
